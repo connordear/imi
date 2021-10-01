@@ -1,24 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { Breakdown } from "./components/Breakdown";
+import TextareaAutosize from "react-textarea-autosize";
 function App() {
+  const [jp, setJp] = useState("こんにちわ。げんきですか");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "25px",
+      }}
+    >
+      <h1>imi</h1>
+      <TextareaAutosize
+        style={{ fontSize: 24, padding: 10 }}
+        value={jp}
+        onChange={(e) => setJp(e.currentTarget.value)}
+      />
+      <div
+        style={{
+          display: "flex",
+          gap: "25px",
+        }}
+      >
+        {jp.split(/\s*[\s,]\s*/).map((s) => (
+          <Breakdown japanese={s} />
+        ))}
+      </div>
     </div>
   );
 }

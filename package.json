@@ -2,6 +2,7 @@
   "name": "imi",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://connordear.github.io/imi",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -24,14 +25,18 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && gh-pages -d build"
   },
-  "proxy": "http://localhost:4000",
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
+  },
+  "devDependencies": {
+    "@types/wanakana": "^4.0.3",
+    "gh-pages": "^3.2.3"
   },
   "browserslist": {
     "production": [
@@ -44,8 +49,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@types/wanakana": "^4.0.3"
   }
 }

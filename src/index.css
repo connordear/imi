@@ -22,3 +22,23 @@ code {
   font-size: 15px;
   text-align: center;
 }
+
+button.icon-btn {
+  padding: 10px;
+  border: 0 none;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  background-color: aquamarine;
+}
+
+.btn-icon {
+  width: 25px;
+}
+
+h5 {
+  font-weight: 400;
+}

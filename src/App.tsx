@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { Breakdown } from "./components/Breakdown";
 import TextareaAutosize from "react-textarea-autosize";
@@ -29,7 +28,7 @@ function App() {
           }}
         >
           {jp.split(/\s*[\s,。]\s*/).map((s) => (
-            <Breakdown japanese={s} />
+            <Breakdown key={s} japanese={s} />
           ))}
         </div>
       </div>

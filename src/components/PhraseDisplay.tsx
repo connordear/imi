@@ -1,12 +1,13 @@
 import React, { useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { Segment, Grid, Button, Divider } from "semantic-ui-react";
+import { phraseIndexAtom, phrasesAtom } from "../state/phraseState";
 import { Breakdown } from "./Breakdown";
-var randomPhrases = require("../assets/random_phrases.json");
 
-interface PhraseProps {}
-export const Phrase = ({}: PhraseProps) => {
-  const [phraseIdx, setPhraseIdx] = useState(0);
-  const jp = randomPhrases[phraseIdx]?.jp || "";
+export const PhraseDisplay = () => {
+  const [phraseIdx, setPhraseIdx] = useRecoilState(phraseIndexAtom);
+  const randomPhrases = useRecoilValue(phrasesAtom);
+  const jp = randomPhrases[phraseIdx]?.ja || "";
   const en = randomPhrases[phraseIdx]?.en || "";
   return (
     <Segment>

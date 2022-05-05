@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import "semantic-ui-css/semantic.min.css";
 import {
   Container,
@@ -11,10 +12,14 @@ import {
   Image,
   Button,
 } from "semantic-ui-react";
-import { Phrase } from "./components/Phrase";
+import { PhraseDisplay } from "./components/PhraseDisplay";
+import { phraseIndexAtom, phrasesAtom } from "./state/phraseState";
 
 function App() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const phrases = useRecoilValue(phrasesAtom);
+  const [selectedPhraseIndex, setSelectedPhraseIndex] =
+    useRecoilState(phraseIndexAtom);
   return (
     <Grid columns={1}>
       <Grid.Column style={{ paddingBottom: 0 }}>
@@ -29,18 +34,34 @@ function App() {
             visible={isSidebarVisible}
             width="thin"
           >
-            <Menu.Item as="a">
-              <Icon name="home" />
-              Home
-            </Menu.Item>
-            <Menu.Item as="a">
-              <Icon name="gamepad" />
-              Games
-            </Menu.Item>
-            <Menu.Item as="a">
-              <Icon name="camera" />
-              Channels
-            </Menu.Item>
+            {phrases.map((phrase, i) => (
+              <Menu.Item
+                key={i}
+                as="a"
+                onClick={() => {
+                  setSelectedPhraseIndex(i);
+                  setIsSidebarVisible(false);
+                }}
+              >
+                <Header
+                  as="h4"
+                  style={{
+                    color: selectedPhraseIndex === i ? "white" : "grey",
+                  }}
+                >
+                  <Header.Content>
+                    {phrase.ja}
+                    <Header.Subheader
+                      style={{
+                        color: selectedPhraseIndex === i ? "white" : "grey",
+                      }}
+                    >
+                      {phrase.en}
+                    </Header.Subheader>
+                  </Header.Content>
+                </Header>
+              </Menu.Item>
+            ))}
           </Sidebar>
 
           <Sidebar.Pusher
@@ -65,7 +86,7 @@ function App() {
               <Header textAlign={"center"} size={"huge"}>
                 imi
               </Header>
-              <Phrase />
+              <PhraseDisplay />
             </Container>
             <Segment
               inverted

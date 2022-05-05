@@ -1,13 +1,12 @@
-export interface JishoSection {
-  antonyms: string[];
-  english_definitions: string[];
+export interface Phrase {
+  ja: string;
+  en: string;
+  rating: PhraseRating;
 }
 
-export interface JishoBase {
-  senses: JishoSection[];
-  slug: string;
-}
-
-export interface JishoResponse {
-  data: JishoBase[];
+export enum PhraseRating {
+  Unrated = 0,
+  Bad = 1,
+  Ok = 2,
+  Good = 3,
 }

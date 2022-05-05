@@ -1,12 +1,14 @@
 import React, { FC } from "react";
+import { Container, Grid, Icon } from "semantic-ui-react";
 import { useRomaji } from "../hooks/useRomaji";
 import { useTranslationQuery } from "../hooks/useTranslation";
 interface BreakdownProps {
   japanese: string;
 }
 export const Breakdown: FC<BreakdownProps> = ({ japanese }) => {
-  const { data: response } = useTranslationQuery(japanese);
-  const { toRomaji } = useRomaji();
+  const { data: response, isLoading: responseIsLoading } =
+    useTranslationQuery(japanese);
+  const romaji = useRomaji(japanese);
 
   return (
     <div
@@ -16,11 +18,18 @@ export const Breakdown: FC<BreakdownProps> = ({ japanese }) => {
         alignItems: "center",
       }}
     >
-      <p className={"breakdown-en"}>{toRomaji(japanese)}</p>
-      <p className={"breakdown-jp"}>{japanese}</p>
-      <div className={"breakdown-en"}>
-        {response && <p key={response}>{response}</p>}
-      </div>
+      <Grid centered textAlign="center">
+        <Grid.Row textAlign={"center"}>{romaji}</Grid.Row>
+        <Grid.Row>
+          <p className={"breakdown-jp"}>{japanese}</p>
+        </Grid.Row>
+        <Grid.Row>
+          <div className={"breakdown-en"}>
+            {response && <p key={response}>{response}</p>}
+            {responseIsLoading && <Icon name={"spinner"} loading />}
+          </div>
+        </Grid.Row>
+      </Grid>
     </div>
   );
 };

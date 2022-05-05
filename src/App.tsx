@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import "./App.css";
 import { Breakdown } from "./components/Breakdown";
-import TextareaAutosize from "react-textarea-autosize";
-import autorenew from "./assets/autorenew.png";
+import "semantic-ui-css/semantic.min.css";
+import {
+  Button,
+  Container,
+  Divider,
+  Grid,
+  Header,
+  Rail,
+  Segment,
+} from "semantic-ui-react";
 var randomPhrases = require("./assets/random_phrases.json");
 
 function App() {
@@ -17,36 +24,44 @@ function App() {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "25px",
-        }}
-      >
-        <h1>imi</h1>
-        <p>{en}</p>
-        <TextareaAutosize
-          style={{ fontSize: 24, padding: 10 }}
-          value={jp}
-          placeholder={"Enter a Japanese phrase here."}
-          onChange={(e) => setJp(e.currentTarget.value)}
-        />
-        <button className={"icon-btn"} onClick={selectRandomPhrase}>
-          <img src={autorenew} className={"btn-icon"} />
-        </button>
-        <div
-          style={{
-            display: "flex",
-            gap: "25px",
-          }}
-        >
-          {jp.split(/\s*[\s,。]\s*/).map((s) => (
-            <Breakdown key={s} japanese={s} />
-          ))}
-        </div>
-      </div>
+      <Container style={{ marginTop: "3em" }}>
+        <Header textAlign={"center"} size={"huge"}>
+          imi
+        </Header>
+        <Segment>
+          <Grid columns={1} centered>
+            <Grid.Row>
+              <Grid columns={3} centered verticalAlign={"middle"}>
+                <Grid.Column textAlign={"right"}>
+                  <Button onClick={selectRandomPhrase}>Previous</Button>
+                </Grid.Column>
+                <Grid.Column textAlign={"center"}>{en}</Grid.Column>
+                <Grid.Column textAlign={"left"}>
+                  <Button onClick={selectRandomPhrase}>Next</Button>
+                </Grid.Column>
+              </Grid>
+            </Grid.Row>
+            <Grid.Column textAlign={"center"}>
+              <p className={"breakdown-jp"}>{jp}</p>
+              <Divider />
+              <Grid centered style={{ marginTop: "2em" }}>
+                <Grid.Row>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "25px",
+                    }}
+                  >
+                    {jp.split(/\s*[\s,。]\s*/).map((s, i) => (
+                      <Breakdown key={`${s}-${i}`} japanese={s} />
+                    ))}
+                  </div>
+                </Grid.Row>
+              </Grid>
+            </Grid.Column>
+          </Grid>
+        </Segment>
+      </Container>
       <footer style={{ position: "fixed", bottom: 5, width: "100%" }}>
         <div>
           <h5 style={{ textAlign: "center" }}>

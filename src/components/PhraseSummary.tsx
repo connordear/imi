@@ -23,7 +23,7 @@ export const PhraseSummary = ({
     >
       <Header.Content>
         {phrase.ja}
-        {!hideEnglish && (
+        {!hideEnglish.value && (
           <Header.Subheader
             style={{
               color: isSelected ? "white" : "grey",

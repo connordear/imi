@@ -11,14 +11,8 @@ export const Breakdown: FC<BreakdownProps> = ({ japanese }) => {
   const romaji = useRomaji(japanese);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <Grid centered textAlign="center">
+    <div>
+      <Grid centered columns={1}>
         <Grid.Row textAlign={"center"}>{romaji}</Grid.Row>
         <Grid.Row>
           <p className={"breakdown-jp"}>{japanese}</p>

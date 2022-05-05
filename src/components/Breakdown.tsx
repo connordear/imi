@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Container, Grid, Icon } from "semantic-ui-react";
+import { Container, Grid, Icon, Loader } from "semantic-ui-react";
 import { useRomaji } from "../hooks/useRomaji";
 import { useTranslationQuery } from "../hooks/useTranslation";
 interface BreakdownProps {
@@ -20,7 +20,7 @@ export const Breakdown: FC<BreakdownProps> = ({ japanese }) => {
         <Grid.Row>
           <div className={"breakdown-en"}>
             {response && <p key={response}>{response}</p>}
-            {responseIsLoading && <Icon name={"spinner"} loading />}
+            {responseIsLoading && <Loader active inline />}
           </div>
         </Grid.Row>
       </Grid>

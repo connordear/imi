@@ -13,10 +13,13 @@ import {
   Button,
 } from "semantic-ui-react";
 import { PhraseDisplay } from "./components/PhraseDisplay";
+import { PhraseSummary } from "./components/PhraseSummary";
+import { SettingsSidebar } from "./components/SettingsSidebar";
 import { phraseIndexAtom, phrasesAtom } from "./state/phraseState";
 
 function App() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const [isSettingsVisible, setIsSettingsVisible] = useState(false);
   const phrases = useRecoilValue(phrasesAtom);
   const [selectedPhraseIndex, setSelectedPhraseIndex] =
     useRecoilState(phraseIndexAtom);
@@ -40,30 +43,22 @@ function App() {
                 as="a"
                 onClick={() => {
                   setSelectedPhraseIndex(i);
-                  setIsSidebarVisible(false);
+                }}
+                style={{
+                  opacity: phrase.rating >= 3 ? 0.5 : 1,
                 }}
               >
-                <Header
-                  as="h4"
-                  style={{
-                    color: selectedPhraseIndex === i ? "white" : "grey",
-                  }}
-                >
-                  <Header.Content>
-                    {phrase.ja}
-                    <Header.Subheader
-                      style={{
-                        color: selectedPhraseIndex === i ? "white" : "grey",
-                      }}
-                    >
-                      {phrase.en}
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
+                <PhraseSummary
+                  phraseId={i}
+                  isSelected={selectedPhraseIndex === i}
+                />
               </Menu.Item>
             ))}
           </Sidebar>
-
+          <SettingsSidebar
+            isVisible={isSettingsVisible}
+            setIsVisible={setIsSettingsVisible}
+          />
           <Sidebar.Pusher
             style={{
               display: "flex",
@@ -71,7 +66,7 @@ function App() {
               justifyContent: "space-between",
               minHeight: "100vh",
             }}
-            dimmed={isSidebarVisible}
+            dimmed={isSidebarVisible || isSettingsVisible}
           >
             <Container>
               <Button
@@ -81,6 +76,15 @@ function App() {
                   position: "absolute",
                   top: 20,
                   left: 20,
+                }}
+              />
+              <Button
+                icon={<Icon name="settings" />}
+                onClick={() => setIsSettingsVisible(true)}
+                style={{
+                  position: "absolute",
+                  top: 20,
+                  right: 20,
                 }}
               />
               <Header textAlign={"center"} size={"huge"}>

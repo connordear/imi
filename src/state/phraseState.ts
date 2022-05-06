@@ -24,6 +24,7 @@ export const phrasesAtom = atom<Phrase[]>({
 export const phraseIndexAtom = atom({
   key: "phraseIndex",
   default: 0,
+  effects: [localStorageEffect("phraseIndex")],
 });
 
 // Get a phrase by id

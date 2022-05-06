@@ -1,4 +1,5 @@
 import React from "react";
+import { useSetRecoilState } from "recoil";
 import {
   Modal,
   Button,
@@ -8,7 +9,9 @@ import {
   Form,
   Checkbox,
   Menu,
+  Container,
 } from "semantic-ui-react";
+import { phrasesAtom } from "../state/phraseState";
 import {
   HIDE_ENGLISH,
   HIDE_ROMAJI,
@@ -24,6 +27,7 @@ export const SettingsSidebar = ({
   isVisible,
   setIsVisible,
 }: SettingsSidebarProps) => {
+  const setPhrases = useSetRecoilState(phrasesAtom);
   return (
     <Sidebar
       as={Menu}
@@ -42,6 +46,20 @@ export const SettingsSidebar = ({
       </Menu.Item>
       <Menu.Item>
         <SettingChanger settingKey={SKIP_IF_GOOD} />
+      </Menu.Item>
+      <Menu.Item>
+        <Container textAlign="center">
+          <Button
+            inverted
+            onClick={() => {
+              setPhrases((phrases) =>
+                phrases.map((p) => ({ ...p, rating: 0 }))
+              );
+            }}
+          >
+            Reset Ratings
+          </Button>
+        </Container>
       </Menu.Item>
     </Sidebar>
   );

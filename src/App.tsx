@@ -92,17 +92,6 @@ function App() {
                 imi
               </Header>
               <PhraseDisplay />
-              <Container textAlign="center">
-                <Button
-                  onClick={() => {
-                    setPhrases((phrases: Phrase[]) =>
-                      phrases.map((p) => ({ ...p, rating: 0 }))
-                    );
-                  }}
-                >
-                  Reset Ratings
-                </Button>
-              </Container>
             </Container>
             <Segment
               inverted

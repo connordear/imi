@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { Segment, Grid, Button, Divider } from "semantic-ui-react";
+import { Segment, Grid, Button, Divider, Icon } from "semantic-ui-react";
 import {
   phraseIndexAtom,
   phrasesAtom,
@@ -95,11 +95,17 @@ export const PhraseDisplay = () => {
         <Grid.Row>
           <Grid columns={3} centered verticalAlign={"middle"}>
             <Grid.Column textAlign={"right"}>
-              <Button onClick={prevPhrase}>Previous</Button>
+              <Button onClick={prevPhrase} icon labelPosition="left">
+                <Icon name={"arrow left"} />
+                Previous
+              </Button>
             </Grid.Column>
             <HideableText text={en} isHidden={!!hideEnglish.value} />
             <Grid.Column textAlign={"left"}>
-              <Button onClick={nextPhrase}>Next</Button>
+              <Button onClick={nextPhrase} icon labelPosition="right">
+                Next
+                <Icon name={"arrow right"} />
+              </Button>
             </Grid.Column>
           </Grid>
         </Grid.Row>

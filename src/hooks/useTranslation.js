@@ -19,6 +19,7 @@ jpToEnDict.set("ごねん", "5 years");
 jpToEnDict.set("いきましたか", "did you go?");
 jpToEnDict.set("いきました", "went");
 jpToEnDict.set("いきますか", "are you going?");
+jpToEnDict.set("を", "indicates object");
 export function useTranslationQuery(japanese = "") {
   return useQuery(["jp", japanese], async () => {
     if (jpToEnDict.has(japanese)) {

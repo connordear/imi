@@ -4,6 +4,7 @@ import { localStorageEffect } from "./utils";
 
 export const HIDE_ENGLISH = "hide_english";
 export const HIDE_ROMAJI = "hide_romaji";
+export const SKIP_IF_GOOD = "skip_if_good";
 
 const guardRecoilDefaultValue = (
   candidate: unknown
@@ -17,6 +18,7 @@ export const settingsAtom = atom({
   default: [
     { key: HIDE_ENGLISH, label: "Hide English", value: false },
     { key: HIDE_ROMAJI, label: "Hide Romaji", value: false },
+    { key: SKIP_IF_GOOD, label: "Skip 3 Starred Cards", value: false },
   ] as Setting[],
   effects: [localStorageEffect("settings")],
 });

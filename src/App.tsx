@@ -20,7 +20,7 @@ import { phraseIndexAtom, phrasesAtom } from "./state/phraseState";
 function App() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [isSettingsVisible, setIsSettingsVisible] = useState(false);
-  const phrases = useRecoilValue(phrasesAtom);
+  const [phrases, setPhrases] = useRecoilState(phrasesAtom);
   const [selectedPhraseIndex, setSelectedPhraseIndex] =
     useRecoilState(phraseIndexAtom);
   return (
@@ -91,6 +91,17 @@ function App() {
                 imi
               </Header>
               <PhraseDisplay />
+              <Container textAlign="center">
+                <Button
+                  onClick={() => {
+                    setPhrases((phrases) =>
+                      phrases.map((p) => ({ ...p, rating: 0 }))
+                    );
+                  }}
+                >
+                  Reset Ratings
+                </Button>
+              </Container>
             </Container>
             <Segment
               inverted

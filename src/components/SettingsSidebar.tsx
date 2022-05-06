@@ -9,7 +9,11 @@ import {
   Checkbox,
   Menu,
 } from "semantic-ui-react";
-import { HIDE_ENGLISH, HIDE_ROMAJI } from "../state/settingsState";
+import {
+  HIDE_ENGLISH,
+  HIDE_ROMAJI,
+  SKIP_IF_GOOD,
+} from "../state/settingsState";
 import { SettingChanger } from "./SettingChanger";
 
 interface SettingsSidebarProps {
@@ -35,6 +39,9 @@ export const SettingsSidebar = ({
       </Menu.Item>
       <Menu.Item>
         <SettingChanger settingKey={HIDE_ROMAJI} />
+      </Menu.Item>
+      <Menu.Item>
+        <SettingChanger settingKey={SKIP_IF_GOOD} />
       </Menu.Item>
     </Sidebar>
   );

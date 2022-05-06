@@ -20,6 +20,7 @@ jpToEnDict.set("いきましたか", "did you go?");
 jpToEnDict.set("いきました", "went");
 jpToEnDict.set("いきますか", "are you going?");
 jpToEnDict.set("を", "indicates object");
+jpToEnDict.set("の", "possessive particle");
 export function useTranslationQuery(japanese = "") {
   return useQuery(["jp", japanese], async () => {
     if (jpToEnDict.has(japanese)) {

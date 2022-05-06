@@ -21,12 +21,12 @@ import { Phrase } from "./types";
 function App() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [isSettingsVisible, setIsSettingsVisible] = useState(false);
-  const [phrases, setPhrases] = useRecoilState(phrasesAtom);
+  const phrases = useRecoilValue(phrasesAtom);
   const [selectedPhraseIndex, setSelectedPhraseIndex] =
     useRecoilState(phraseIndexAtom);
   return (
     <Grid columns={1}>
-      <Grid.Column style={{ paddingBottom: 0 }}>
+      <Grid.Column style={{ paddingBottom: 0, backgroundColor: "#efefef" }}>
         <Sidebar.Pushable>
           <Sidebar
             as={Menu}
@@ -69,28 +69,34 @@ function App() {
             }}
             dimmed={isSidebarVisible || isSettingsVisible}
           >
-            <Container>
-              <Button
-                icon={<Icon name="sidebar" />}
-                onClick={() => setIsSidebarVisible(true)}
-                style={{
-                  position: "absolute",
-                  top: 20,
-                  left: 20,
-                }}
-              />
-              <Button
-                icon={<Icon name="settings" />}
-                onClick={() => setIsSettingsVisible(true)}
-                style={{
-                  position: "absolute",
-                  top: 20,
-                  right: 20,
-                }}
-              />
-              <Header textAlign={"center"} size={"huge"}>
-                imi
-              </Header>
+            <Container style={{ marginTop: 20 }}>
+              <Grid textAlign="center" verticalAlign="middle">
+                <Grid.Row columns={3}>
+                  <Grid.Column textAlign="left">
+                    <Button
+                      icon={<Icon name="sidebar" />}
+                      onClick={() => setIsSidebarVisible(true)}
+                      style={{}}
+                    />
+                  </Grid.Column>
+                  <Grid.Column>
+                    <Header
+                      textAlign={"center"}
+                      size={"huge"}
+                      style={{ fontSize: "3em" }}
+                    >
+                      imi
+                    </Header>
+                  </Grid.Column>
+                  <Grid.Column textAlign="right">
+                    <Button
+                      icon={<Icon name="settings" />}
+                      onClick={() => setIsSettingsVisible(true)}
+                      style={{}}
+                    />
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
               <PhraseDisplay />
             </Container>
             <Segment

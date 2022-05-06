@@ -16,6 +16,7 @@ import { PhraseDisplay } from "./components/PhraseDisplay";
 import { PhraseSummary } from "./components/PhraseSummary";
 import { SettingsSidebar } from "./components/SettingsSidebar";
 import { phraseIndexAtom, phrasesAtom } from "./state/phraseState";
+import { Phrase } from "./types";
 
 function App() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
@@ -37,7 +38,7 @@ function App() {
             visible={isSidebarVisible}
             width="thin"
           >
-            {phrases.map((phrase, i) => (
+            {phrases.map((phrase: Phrase, i: number) => (
               <Menu.Item
                 key={i}
                 as="a"
@@ -94,7 +95,7 @@ function App() {
               <Container textAlign="center">
                 <Button
                   onClick={() => {
-                    setPhrases((phrases) =>
+                    setPhrases((phrases: Phrase[]) =>
                       phrases.map((p) => ({ ...p, rating: 0 }))
                     );
                   }}

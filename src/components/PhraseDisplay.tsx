@@ -1,7 +1,12 @@
 import React, { useCallback } from "react";
+import { useHotkeys } from "react-hotkeys-hook";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { Segment, Grid, Button, Divider } from "semantic-ui-react";
-import { phraseIndexAtom, phrasesAtom } from "../state/phraseState";
+import {
+  phraseIndexAtom,
+  phrasesAtom,
+  phraseSelector,
+} from "../state/phraseState";
 import {
   HIDE_ENGLISH,
   settingSelector,
@@ -36,6 +41,7 @@ export const getNextIndex = (
 
 export const PhraseDisplay = () => {
   const [phraseIdx, setPhraseIdx] = useRecoilState(phraseIndexAtom);
+  const [phrase, setPhrase] = useRecoilState(phraseSelector(phraseIdx));
 
   const hideEnglish = useRecoilValue(settingSelector(HIDE_ENGLISH));
   const skipIfGood = useRecoilValue(settingSelector(SKIP_IF_GOOD));
@@ -51,6 +57,37 @@ export const PhraseDisplay = () => {
   const prevPhrase = useCallback(() => {
     setPhraseIdx(getNextIndex(phrases, phraseIdx, !!skipIfGood.value, false));
   }, [phrases, phraseIdx, skipIfGood]);
+
+  useHotkeys("left", prevPhrase, [phraseIdx, phrases, skipIfGood]);
+  useHotkeys("right", nextPhrase, [phraseIdx, phrases, skipIfGood]);
+  useHotkeys(
+    "0",
+    () => {
+      setPhrase((phrase) => ({ ...phrase, rating: 0 }));
+    },
+    [phrase]
+  );
+  useHotkeys(
+    "1",
+    () => {
+      setPhrase((phrase) => ({ ...phrase, rating: 1 }));
+    },
+    [phrase]
+  );
+  useHotkeys(
+    "2",
+    () => {
+      setPhrase((phrase) => ({ ...phrase, rating: 2 }));
+    },
+    [phrase]
+  );
+  useHotkeys(
+    "3",
+    () => {
+      setPhrase((phrase) => ({ ...phrase, rating: 3 }));
+    },
+    [phrase]
+  );
 
   return (
     <Segment>

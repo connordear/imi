@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import "semantic-ui-css/semantic.min.css";
 import {
   Container,
@@ -9,7 +9,6 @@ import {
   Menu,
   Segment,
   Sidebar,
-  Image,
   Button,
 } from "semantic-ui-react";
 import { PhraseDisplay } from "./components/PhraseDisplay";

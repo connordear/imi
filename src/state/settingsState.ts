@@ -1,17 +1,11 @@
-import { atom, DefaultValue, selectorFamily } from "recoil";
+import { atom, selectorFamily } from "recoil";
 import { Setting } from "../types";
+import { guardRecoilDefaultValue } from "./stateUtil";
 import { localStorageEffect } from "./utils";
 
 export const HIDE_ENGLISH = "hide_english";
 export const HIDE_ROMAJI = "hide_romaji";
 export const SKIP_IF_GOOD = "skip_if_good";
-
-const guardRecoilDefaultValue = (
-  candidate: unknown
-): candidate is DefaultValue => {
-  if (candidate instanceof DefaultValue) return true;
-  return false;
-};
 
 export const settingsAtom = atom({
   key: "settings",

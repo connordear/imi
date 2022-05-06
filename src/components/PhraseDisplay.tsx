@@ -52,11 +52,11 @@ export const PhraseDisplay = () => {
 
   const nextPhrase = useCallback(() => {
     setPhraseIdx(getNextIndex(phrases, phraseIdx, !!skipIfGood.value, true));
-  }, [phrases, phraseIdx, skipIfGood]);
+  }, [phrases, phraseIdx, setPhraseIdx, skipIfGood]);
 
   const prevPhrase = useCallback(() => {
     setPhraseIdx(getNextIndex(phrases, phraseIdx, !!skipIfGood.value, false));
-  }, [phrases, phraseIdx, skipIfGood]);
+  }, [phrases, phraseIdx, setPhraseIdx, skipIfGood]);
 
   useHotkeys("left", prevPhrase, [phraseIdx, phrases, skipIfGood]);
   useHotkeys("right", nextPhrase, [phraseIdx, phrases, skipIfGood]);

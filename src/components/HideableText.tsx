@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
-import { Container, Grid } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 
 interface HideableTextProps {
   isHidden: boolean;

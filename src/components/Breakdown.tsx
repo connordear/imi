@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import React from "react";
 import { useRecoilValue } from "recoil";
-import { Container, Grid, Icon, Loader } from "semantic-ui-react";
+import { Grid, Loader } from "semantic-ui-react";
 import { useRomaji } from "../hooks/useRomaji";
 import { useTranslationQuery } from "../hooks/useTranslation";
 import {
@@ -12,7 +12,7 @@ import { HideableText } from "./HideableText";
 interface BreakdownProps {
   japanese: string;
 }
-export const Breakdown: FC<BreakdownProps> = ({ japanese }) => {
+export const Breakdown = ({ japanese }: BreakdownProps) => {
   const { data: response, isLoading: responseIsLoading } =
     useTranslationQuery(japanese);
   const romaji = useRomaji(japanese);

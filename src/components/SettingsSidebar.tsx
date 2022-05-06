@@ -1,16 +1,6 @@
 import React from "react";
 import { useSetRecoilState } from "recoil";
-import {
-  Modal,
-  Button,
-  Header,
-  Sidebar,
-  Segment,
-  Form,
-  Checkbox,
-  Menu,
-  Container,
-} from "semantic-ui-react";
+import { Button, Sidebar, Menu, Container } from "semantic-ui-react";
 import { phrasesAtom } from "../state/phraseState";
 import {
   HIDE_ENGLISH,

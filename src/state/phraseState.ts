@@ -1,14 +1,8 @@
 import { atom, DefaultValue, selectorFamily } from "recoil";
 import { Phrase, UserRating } from "../types";
+import { guardRecoilDefaultValue } from "./stateUtil";
 import { localStorageEffect } from "./utils";
 var randomPhrases = require("../assets/random_phrases.json");
-
-const guardRecoilDefaultValue = (
-  candidate: unknown
-): candidate is DefaultValue => {
-  if (candidate instanceof DefaultValue) return true;
-  return false;
-};
 
 export const phrasesAtom = atom<Phrase[]>({
   key: "phrases",

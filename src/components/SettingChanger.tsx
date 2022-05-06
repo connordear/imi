@@ -1,15 +1,6 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import {
-  Checkbox,
-  Container,
-  Form,
-  Grid,
-  Header,
-  Input,
-  Label,
-  Segment,
-} from "semantic-ui-react";
+import { Checkbox, Grid, Segment } from "semantic-ui-react";
 import { settingSelector } from "../state/settingsState";
 
 interface SettingChangerProps {

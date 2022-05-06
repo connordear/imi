@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
-import { Container, Header, Rating, Segment } from "semantic-ui-react";
+import { Header, Rating } from "semantic-ui-react";
 import { phraseSelector } from "../state/phraseState";
 import { HIDE_ENGLISH, settingSelector } from "../state/settingsState";
 

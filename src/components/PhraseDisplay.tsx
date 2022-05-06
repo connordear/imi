@@ -92,8 +92,8 @@ export const PhraseDisplay = () => {
   return (
     <Segment>
       <Grid columns={1} centered>
-        <Grid.Row>
-          <Grid columns={3} centered verticalAlign={"middle"}>
+        <Grid.Row only="computer tablet">
+          <Grid columns={3} stackable centered verticalAlign={"middle"}>
             <Grid.Column textAlign={"right"}>
               <Button onClick={prevPhrase} icon labelPosition="left">
                 <Icon name={"arrow left"} />
@@ -108,6 +108,24 @@ export const PhraseDisplay = () => {
               </Button>
             </Grid.Column>
           </Grid>
+        </Grid.Row>
+
+        <Grid.Row only="mobile" columns={2} centered>
+          <Grid.Column textAlign="right">
+            <Button onClick={prevPhrase} icon labelPosition="left">
+              <Icon name={"arrow left"} />
+              Previous
+            </Button>
+          </Grid.Column>
+          <Grid.Column textAlign="left">
+            <Button onClick={nextPhrase} icon labelPosition="right">
+              Next
+              <Icon name={"arrow right"} />
+            </Button>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row only="mobile">
+          <HideableText text={en} isHidden={!!hideEnglish.value} />
         </Grid.Row>
         <Grid.Row>
           <p className={"breakdown-jp"}>{jp}</p>

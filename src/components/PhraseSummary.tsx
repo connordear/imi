@@ -33,8 +33,10 @@ export const PhraseSummary = ({
             {phrase.en}
           </Header.Subheader>
         )}
-        <Rating disabled rating={phrase.rating} maxRating={3} size={"tiny"} />
       </Header.Content>
+      <Header.Subheader>
+        <Rating disabled rating={phrase.rating} maxRating={3} size={"tiny"} />
+      </Header.Subheader>
     </Header>
   );
 };

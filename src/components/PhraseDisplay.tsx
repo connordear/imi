@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { Segment, Grid, Button, Divider, Icon } from "semantic-ui-react";
@@ -12,7 +12,7 @@ import {
   settingSelector,
   SKIP_IF_GOOD,
 } from "../state/settingsState";
-import { Phrase } from "../types";
+import { Phrase, UserRating } from "../types";
 import { Breakdown } from "./Breakdown";
 import { HideableText } from "./HideableText";
 import { PhraseRating } from "./PhraseRating";
@@ -26,14 +26,17 @@ export const getNextIndex = (
   const modifier = isForward ? 1 : -1;
 
   // If we are don't care about skipping 3 stars, or ALL phrases are 3 stars, just return the next index
-  if (!skipIf3Stars || phrases.every((phrase) => phrase.rating === 3)) {
+  if (
+    !skipIf3Stars ||
+    phrases.every((phrase) => phrase.rating === UserRating.Good)
+  ) {
     // we add the length in the case that we are at the start of the list and going backwards
     return (currentIndex + modifier + phrases.length) % phrases.length;
   }
 
   // skip 3 stars (we know there is at least one phrase here not 3 stars)
   let nextIndex = (currentIndex + modifier + phrases.length) % phrases.length;
-  while (phrases[nextIndex].rating === 3) {
+  while (phrases[nextIndex].rating === UserRating.Good) {
     nextIndex = (nextIndex + modifier + phrases.length) % phrases.length;
   }
   return nextIndex;
@@ -50,41 +53,41 @@ export const PhraseDisplay = () => {
   const jp = phrases[phraseIdx]?.ja || "";
   const en = phrases[phraseIdx]?.en || "";
 
-  const nextPhrase = useCallback(() => {
+  const nextPhrase = () => {
     setPhraseIdx(getNextIndex(phrases, phraseIdx, !!skipIfGood.value, true));
-  }, [phrases, phraseIdx, setPhraseIdx, skipIfGood]);
+  };
 
-  const prevPhrase = useCallback(() => {
+  const prevPhrase = () => {
     setPhraseIdx(getNextIndex(phrases, phraseIdx, !!skipIfGood.value, false));
-  }, [phrases, phraseIdx, setPhraseIdx, skipIfGood]);
+  };
 
   useHotkeys("left", prevPhrase, [phraseIdx, phrases, skipIfGood]);
   useHotkeys("right", nextPhrase, [phraseIdx, phrases, skipIfGood]);
   useHotkeys(
     "0",
     () => {
-      setPhrase((phrase) => ({ ...phrase, rating: 0 }));
+      setPhrase((phrase) => ({ ...phrase, rating: UserRating.Unrated }));
     },
     [phrase]
   );
   useHotkeys(
     "1",
     () => {
-      setPhrase((phrase) => ({ ...phrase, rating: 1 }));
+      setPhrase((phrase) => ({ ...phrase, rating: UserRating.Bad }));
     },
     [phrase]
   );
   useHotkeys(
     "2",
     () => {
-      setPhrase((phrase) => ({ ...phrase, rating: 2 }));
+      setPhrase((phrase) => ({ ...phrase, rating: UserRating.Ok }));
     },
     [phrase]
   );
   useHotkeys(
     "3",
     () => {
-      setPhrase((phrase) => ({ ...phrase, rating: 3 }));
+      setPhrase((phrase) => ({ ...phrase, rating: UserRating.Good }));
     },
     [phrase]
   );

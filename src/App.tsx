@@ -45,7 +45,8 @@ function App() {
                   setSelectedPhraseIndex(i);
                 }}
                 style={{
-                  opacity: phrase.rating >= 3 ? 0.5 : 1,
+                  opacity:
+                    selectedPhraseIndex !== i && phrase.rating >= 3 ? 0.5 : 1,
                 }}
               >
                 <PhraseSummary

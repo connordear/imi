@@ -19,8 +19,14 @@
     "en": "Canada has beautiful nature",
     "ja": "カナダ には　うつくしい　しぜんが あります"
   },
-  { "en": "  Where do you live", "ja": "どこ　に　すんでいますか" },
-  { "en": "I live in Japan ", "ja": "にほん　に　すんでいます" },
+  {
+    "en": "  Where do you live",
+    "ja": "どこ　に　すんでいますか"
+  },
+  {
+    "en": "I live in Japan ",
+    "ja": "にほん　に　すんでいます"
+  },
   {
     "en": "How long have you lived there?",
     "ja": "どれくらい　そこ　に　すんでいますか"
@@ -57,7 +63,10 @@
     "en": "Where will you go in Japan?",
     "ja": "にほん の どこ　に　いきますか"
   },
-  { "en": "I will go to Tokyo", "ja": "東京　に　いきます" },
+  {
+    "en": "I will go to Tokyo",
+    "ja": "東京　に　いきます"
+  },
   {
     "en": "Have you ever been to America?",
     "ja": "アメリカ　に　いったことが　ありますか"
